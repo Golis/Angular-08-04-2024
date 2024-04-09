@@ -1,7 +1,14 @@
 <h1>Lista de empleados</h1>
 <div class="list">
-    <app-carditem></app-carditem>
-    <app-carditem></app-carditem>
-    <app-carditem></app-carditem>
-    <app-carditem></app-carditem>
+    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="firstEmployee"></app-carditem>
+    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="secondEmployee"></app-carditem>
+    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="thirdEmployee"></app-carditem>
+    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="fourthEmployee"></app-carditem>
 </div>
+
+
+<h4>Selected employee:
+    @if (selectedEmployee) {
+        <span>AAAAA{{selectedEmployee.name}}</span>
+    }
+</h4>

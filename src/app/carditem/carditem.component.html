@@ -1,1 +1,13 @@
-<p>carditem works!</p>
+<div  class="card">
+    <span>
+        <img  src="{{employee.iconUrl}}" alt="Avatar" style="width:80%">
+        <div class="container">
+        <h4><b>{{employee.name}}</b></h4>
+        <p>{{employee.rank}}</p>
+        </div>
+        <div>
+            <span class="junior" >Necesita Ayuda</span>
+        </div>
+        <button (click)="onEmployeeChecked(employee)">Check Employee</button>
+    </span>
+</div>
