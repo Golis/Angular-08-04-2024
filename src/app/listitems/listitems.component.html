@@ -1,14 +1,30 @@
 <h1>Lista de empleados</h1>
 <div class="list">
-    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="firstEmployee"></app-carditem>
-    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="secondEmployee"></app-carditem>
-    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="thirdEmployee"></app-carditem>
-    <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="fourthEmployee"></app-carditem>
+    <ng-container *ngFor="let employeeItem of employeesList">
+        <app-carditem #component (employeeSelected)="onEmployeeChecked($event)" [employee]="employeeItem">
+            <h4 #contentProjectionRef class="content1">Content projection 1</h4>
+            <h4 class="content2">Content projection 2</h4>
+            <h4>Content projection 3</h4>
+
+        </app-carditem>
+        <!-- De Angular 17 en adelante no obligatorio
+            @for(employeeItem of employeeList){
+            <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="employeeItem"></app-carditem>
+        }-->
+        
+        <!--<app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="firstEmployee"></app-carditem>
+        <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="secondEmployee"></app-carditem>
+        <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="thirdEmployee"></app-carditem>
+        <app-carditem (employeeSelected)="onEmployeeChecked($event)" [employee]="fourthEmployee"></app-carditem>-->
+    </ng-container>
 </div>
 
+<h4 #todayRef>
+    Hoy: {{today | date: 'dd/MM/YYYY'}}
+</h4>
 
 <h4>Selected employee:
     @if (selectedEmployee) {
-        <span>AAAAA{{selectedEmployee.name}}</span>
+        <span>{{selectedEmployee.name}}</span>
     }
 </h4>
