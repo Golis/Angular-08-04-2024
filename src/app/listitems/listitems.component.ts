@@ -3,6 +3,8 @@ import { employees } from '../../assets/fixtures/employees';
 import { Employee } from '../../models/employee';
 import { DatePipe } from '@angular/common';
 import { CarditemComponent } from '../carditem/carditem.component';
+import { Subscription } from 'rxjs';
+import { MockService } from '../services/mock.service';
 
 @Component({
   selector: 'app-listitems',
@@ -27,24 +29,33 @@ export class ListitemsComponent {
   datepipe: DatePipe = new DatePipe('en-US');
   tomorrow?:any;
 
-  constructor(){
+  subscription?: Subscription;
+
+  constructor(
+    private mockService: MockService
+  ){
     /*this.firstEmployee = employees[0];
     this.secondEmployee = employees[1];
     this.thirdEmployee = employees[2];
     this.fourthEmployee = employees[3];*/
-    this.employeesList = employees;
+
+    //this.employeesList = employees;
+
     console.log("Aquí");
     console.log(this.todayRef?.nativeElement.innerText);
   }
 
   onEmployeeChecked(employee: Employee){
       this.selectedEmployee = employee;
-
-      //Enviar al API el/los empleados que recibo para realizar X acción
   }
 
   ngOnInit(){
-
+    // Este es el método ideal para traer datos desde un API
+    this.subscription = this.mockService.getEmployees().subscribe(
+      data => {
+          this.employeesList = data;
+      }
+    )
   }
 
   ngAfterViewInit(){

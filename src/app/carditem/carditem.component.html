@@ -3,7 +3,6 @@
     <img src="../../assets/img_not_available.jpg">
 </ng-template>
 
-
 <div  class="card">
     <span [ngClass]="employee.rank">
         <img *ngIf="employee.iconUrl; else blankImage"  src="{{employee.iconUrl}}" alt="Avatar" style="width:80%">

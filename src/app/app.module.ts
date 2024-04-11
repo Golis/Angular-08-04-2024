@@ -11,6 +11,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { HelpcenterComponent } from './helpcenter/helpcenter.component';
 import { ListitemsComponent } from './listitems/listitems.component';
 import { CarditemComponent } from './carditem/carditem.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { CarditemComponent } from './carditem/carditem.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
