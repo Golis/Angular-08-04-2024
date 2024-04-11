@@ -3,7 +3,7 @@ import { employees } from '../../assets/fixtures/employees';
 import { Employee } from '../../models/employee';
 import { DatePipe } from '@angular/common';
 import { CarditemComponent } from '../carditem/carditem.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MockService } from '../services/mock.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class ListitemsComponent {
 
   selectedEmployee?: Employee;
   employeesList:any;
+  //employeesList$? : Observable<Employee[]>;
 
   today = new Date();
   datepipe: DatePipe = new DatePipe('en-US');
@@ -41,12 +42,16 @@ export class ListitemsComponent {
 
     //this.employeesList = employees;
 
-    console.log("Aquí");
+    console.log("constructor");
     console.log(this.todayRef?.nativeElement.innerText);
   }
 
   onEmployeeChecked(employee: Employee){
       this.selectedEmployee = employee;
+  }
+
+  ngOnChanges(changes: any){
+    console.log('ngOnChanges', changes);
   }
 
   ngOnInit(){
@@ -56,6 +61,8 @@ export class ListitemsComponent {
           this.employeesList = data;
       }
     )
+    //Notación alternativa
+    // this.employeesList$ = this.mockService.getEmployees();
   }
 
   ngAfterViewInit(){
@@ -67,6 +74,14 @@ export class ListitemsComponent {
       console.log(this.tomorrow);
       console.log('cards');
       console.log(this.cards);
+  }
+
+  ngOnDestroy(){
+    console.log('ngOnDestroy');
+
+    if (this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
     
 }

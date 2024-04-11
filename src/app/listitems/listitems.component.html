@@ -1,6 +1,7 @@
 <h1>Lista de empleados</h1>
 <div class="list">
     <ng-container *ngFor="let employeeItem of employeesList">
+        <!--<ng-container *ngFor="let employeeItem of (employeesList$ | async) as emp">-->
         <app-carditem #component (employeeSelected)="onEmployeeChecked($event)" [employee]="employeeItem">
             <h4 #contentProjectionRef class="content1">Content projection 1</h4>
             <h4 class="content2">Content projection 2</h4>

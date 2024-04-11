@@ -12,6 +12,7 @@ import { HelpcenterComponent } from './helpcenter/helpcenter.component';
 import { ListitemsComponent } from './listitems/listitems.component';
 import { CarditemComponent } from './carditem/carditem.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HighlightedDirective } from './directives/highlighted.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     LandingpageComponent,
     HelpcenterComponent,
     ListitemsComponent,
-    CarditemComponent
+    CarditemComponent,
+    HighlightedDirective
   ],
   imports: [
     BrowserModule,
